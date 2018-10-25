@@ -1,0 +1,12 @@
+def execute() {
+    node() {
+
+        stage("build") {
+
+        }
+
+        stage("test") {
+        }
+    }
+}
+return this
