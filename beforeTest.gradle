@@ -1,0 +1,22 @@
+String wrapText(String text){
+    String wrapped = """def execute() {
+    ${text}
+}
+return this
+""".stripMargin()
+return wrapped
+}
+void createWrapedFile(File text_file){
+    logger.lifecycle("Wrapping ${text_file.path}")
+    new File("${text_file.path}wrapped").with {it.write(wrapText(text_file.text))}
+    logger.lifecycle("Wraped file in ${text_file.path}${project.rootProject.jenkinsfileWrapExtension}")
+
+}
+void wrapFiles(){
+    new File(rootDir, project.rootProject.jenkinsfilePath ).eachFileMatch(~/.*.${project.rootProject.jenkinsfileExtension}/){
+        createWrapedFile(it)
+    }
+
+
+}
+wrapFiles()
