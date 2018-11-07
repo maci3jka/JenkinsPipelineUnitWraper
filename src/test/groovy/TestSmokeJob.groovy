@@ -1,5 +1,5 @@
 import org.junit.Test
-import kudlady.CurrentJobBasePipelineTest
+import kudlaty.CurrentJobBasePipelineTest
 
 class TestSmokeJob extends CurrentJobBasePipelineTest {
 
@@ -9,12 +9,9 @@ class TestSmokeJob extends CurrentJobBasePipelineTest {
      * @return script object
      */
 
-    Script wrapLoadScript(String scriptName) {
-        println("Override loadScript")
-        super.loadScript("${scriptName}wrapped")
-    }
 
-    @Test
+
+//    @Test
     void should_execute() throws Exception {
         def script = loadScript("SmokeJob.jenkinsfile")
         script.execute()
@@ -23,11 +20,11 @@ class TestSmokeJob extends CurrentJobBasePipelineTest {
 
     @Test
     void wrap_test() throws Exception {
-        def script = wrapLoadScript("ToWrapJob.Jenkins")
-        println(script)
-        println(script.metaClass.methods.name.unique().sort())
-        script.execute()
-        printCallStack()
+        def script = wrapLoadScript("src/main/groovy/ToWrapJob.Jenkins")
+//        println(script)
+//        println(script.metaClass.methods.name.unique().sort())
+//        script.execute()
+//        printCallStack()
 
     }
 }
